@@ -5,11 +5,11 @@ Un nuevo proyecto.
 
 Nos conectaremos al proyecto de pokemons de JAVA. Usando REST.
 
-* [ ] Recuperar el proyecto de pokemon-rest
-* [ ] Montar la base de datos
-* [ ] Arrancar el servicio REST
+* [x] Recuperar el proyecto de pokemon-rest
+* [x] Montar la base de datos
+* [x] Arrancar el servicio REST
 
-* [ ] Crear aplicacion en Angular "pokemon-cliente-angular"
+* [x] Crear aplicacion en Angular "pokemon-cliente-angular"
 * [ ] Pagina inicial
     * [ ] listado con todos los pokemons
     * [ ] Filtrar por nombre de pokemon
