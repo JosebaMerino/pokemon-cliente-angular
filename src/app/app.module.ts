@@ -10,7 +10,7 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule // Modulo para hacer ruteo
   ],
   providers: [],
   bootstrap: [AppComponent]
