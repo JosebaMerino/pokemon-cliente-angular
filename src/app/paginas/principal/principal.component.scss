@@ -1,0 +1,7 @@
+$principal: rgb(239, 83, 80);;
+
+.list-group-item {
+  &:hover {
+    background-color: lighten(rgb(239, 83, 80), 20) ;
+  }
+}
