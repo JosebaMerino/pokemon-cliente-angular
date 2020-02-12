@@ -1,3 +1,30 @@
+# HOY
+
+Que vamos a hacer?
+Un nuevo proyecto.
+
+Nos conectaremos al proyecto de pokemons de JAVA. Usando REST.
+
+* [ ] Recuperar el proyecto de pokemon-rest
+* [ ] Montar la base de datos
+* [ ] Arrancar el servicio REST
+
+* [ ] Crear aplicacion en Angular "pokemon-cliente-angular"
+* [ ] Pagina inicial
+    * [ ] listado con todos los pokemons
+    * [ ] Filtrar por nombre de pokemon
+    * [ ] Filtrar por habilidad (lista de checkbox)
+    * [ ] Al hacer click en un pokemon sale a la derecha el detallez
+* [ ] Crear, modificar y eliminar pokemons
+* [ ] Conectar la aplicacion con el seevicio rest
+
+(Opcional)
+* [] Gestionar habilidades
+
+
+Una aplicacion con angular, listar datos, algun filtro.
+
+
 # PokemonClienteAngular
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.23.
