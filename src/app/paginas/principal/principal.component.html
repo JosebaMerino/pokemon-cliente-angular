@@ -4,14 +4,25 @@
   <div class="row">
     <div class="col">
       <ul class="list-group">
-        <li class="list-group-item" *ngFor="let pokemon of lista">
-          {{ pokemon.id }}º {{ pokemon.nombre }}
+        <li class="list-group-item" *ngFor="let pokemon of lista" (click)="seleccionarPokemon(pokemon)">
+          {{ pokemon.id }}º {{ pokemon.nombre | titlecase }}
         </li>
       </ul>
     </div> <!-- .col 1 -->
     <div class="col">
-      EN json
-      <pre *ngFor="let pokemon of lista">{{ pokemon | json }}</pre>
+      <div *ngIf="pokemonSeleccionado">
+        <div class="card">
+          <div class="card-body">
+            <h4> {{ pokemonSeleccionado.id }}º {{ pokemonSeleccionado.nombre | titlecase}} </h4>
+
+            <ul class="list-group" *ngIf="true">
+              <li class="list-group-item" *ngFor="let habilidad of pokemonSeleccionado.habilidades">
+                {{ habilidad.id }}º {{ habilidad.nombre | titlecase}}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
   </div> <!-- .row -->
 </div> <!-- .container -->

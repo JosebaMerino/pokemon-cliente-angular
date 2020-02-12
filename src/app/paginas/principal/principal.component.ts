@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Pokemon } from 'src/app/model/pokemon';
+import { PokemonService } from 'src/app/services/pokemon.service';
 
 @Component({
   selector: 'app-principal',
@@ -9,85 +10,29 @@ import { Pokemon } from 'src/app/model/pokemon';
 export class PrincipalComponent implements OnInit {
 
   lista: Array<Pokemon>;
+  pokemonSeleccionado: Pokemon;
 
-  constructor() {
+  constructor(private pokemonService: PokemonService) {
     console.trace('PrincipalComponent constructor');
 
-    this.lista = [
-      {
-          id: 1,
-          nombre: 'lucario',
-          habilidades: [
-              {
-                  id: 1,
-                  nombre: 'impasible'
-              },
-              {
-                  id: 2,
-                  nombre: 'foco interno'
-              },
-              {
-                  id: 3,
-                  nombre: 'justiciero'
-              }
-          ]
-      },
-      {
-          id: 2,
-          nombre: 'pikachu',
-          habilidades: [
-              {
-                  id: 4,
-                  nombre: 'pararayos'
-              },
-              {
-                  id: 5,
-                  nombre: 'electricidad estatica'
-              }
-          ]
-      },
-      {
-          id: 3,
-          nombre: 'charmander',
-          habilidades: [
-              {
-                  id: 1,
-                  nombre: 'impasible'
-              },
-              {
-                  id: 3,
-                  nombre: 'justiciero'
-              },
-              {
-                  id: 6,
-                  nombre: 'ascua'
-              }
-          ]
-      },
-      {
-          id: 4,
-          nombre: 'bulbasaur',
-          habilidades: [
-              {
-                  id: 1,
-                  nombre: 'impasible'
-              },
-              {
-                  id: 7,
-                  nombre: 'hedor'
-              }
-          ]
-      },
-      {
-          id: 5,
-          nombre: 'raichuuu',
-          habilidades: []
-      }
-  ]
+    this.lista = [];
+    this.pokemonSeleccionado = undefined;
   }// constructor
 
   ngOnInit() {
     console.trace('PrincipalComponent ngOnInit');
+
+    this.pokemonService.getPokemons().subscribe(
+      (pokemons) => {
+        this.lista = pokemons;
+      }
+    );
+
   } // ngOnInit
+
+  seleccionarPokemon(pokemon: Pokemon) {
+    console.debug('Pokemon seleccionado: %o', pokemon)
+    this.pokemonSeleccionado = pokemon;
+  }
 
 }
