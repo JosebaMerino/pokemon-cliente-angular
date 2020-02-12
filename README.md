@@ -11,7 +11,7 @@ Nos conectaremos al proyecto de pokemons de JAVA. Usando REST.
 
 * [x] Crear aplicacion en Angular "pokemon-cliente-angular"
 * [ ] Pagina inicial
-    * [ ] listado con todos los pokemons
+    * [ ] Listado con todos los pokemons
     * [ ] Filtrar por nombre de pokemon
     * [ ] Filtrar por habilidad (lista de checkbox)
     * [ ] Al hacer click en un pokemon sale a la derecha el detallez
