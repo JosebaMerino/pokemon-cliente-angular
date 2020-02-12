@@ -1,7 +1,26 @@
-$principal: rgb(239, 83, 80);;
+$principal: rgb(239, 83, 80);
+$secundario: rgb(55, 95, 165);
 
 .list-group-item {
   &:hover {
     background-color: lighten(rgb(239, 83, 80), 20) ;
   }
+  &.seleccionado {
+    background-color: $principal;
+    border-color: complement($principal);
+  }
+}
+
+.card {
+  background-color: $principal;
+}
+
+
+.lupa {
+  margin-left: 0.5rem;
+  transform: translate(-50%, -50%);
+  transform: rotateZ(-20deg);
+  line-height: 20px;
+  font-size: 1.5rem;
+  overflow: hidden;
 }
