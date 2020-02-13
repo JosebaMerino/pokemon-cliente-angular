@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Pokemon } from 'src/app/model/pokemon';
 import { PokemonService } from 'src/app/services/pokemon.service';
 import { Habilidad } from 'src/app/model/habilidad';
+import { CheckItem } from 'src/app/model/checkItem';
 
 @Component({
   selector: 'app-principal',
@@ -13,6 +14,9 @@ export class PrincipalComponent implements OnInit {
   lista: Array<Pokemon>;
   pokemonSeleccionado: Pokemon;
   habilidades: Set<Habilidad>;
+  checkHabilidades: Array<CheckItem>;
+
+  isCollapsedBusqueda: boolean;
 
   constructor(private pokemonService: PokemonService) {
     console.trace('PrincipalComponent constructor');
@@ -20,6 +24,9 @@ export class PrincipalComponent implements OnInit {
     this.lista = [];
     this.pokemonSeleccionado = undefined;
     this.habilidades = new Set<Habilidad>();
+    this.checkHabilidades = new Array<CheckItem>();
+
+    this.isCollapsedBusqueda = true;
   }// constructor
 
   ngOnInit() {
@@ -29,14 +36,14 @@ export class PrincipalComponent implements OnInit {
       (pokemons) => {
         this.lista = pokemons;
         this.habilidades = new Set<Habilidad>(
-          pokemons.reduce((ac, cur) => {
-            return ac.concat(cur.habilidades.map(
-              (el) => {
-                return el.nombre;
-              }
-            ));
+          pokemons.reduce((ac, cur, index, array) => {
+            return ac.concat(cur.habilidades);
           }, [])
         );
+        this.habilidades.forEach((ha) =>
+        {
+          this.checkHabilidades.push(new CheckItem(ha.nombre, ha.id));
+        });
       }
     );
 

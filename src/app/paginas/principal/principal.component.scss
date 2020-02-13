@@ -11,7 +11,7 @@ $secundario: rgb(55, 95, 165);
   }
 }
 
-.card {
+.card.pokemon-detalle {
   background-color: $principal;
 }
 
@@ -19,7 +19,7 @@ $secundario: rgb(55, 95, 165);
 .lupa {
   margin-left: 0.5rem;
   transform: translate(-50%, -50%);
-  transform: rotateZ(-20deg);
+  transform: rotateZ(50deg);
   line-height: 20px;
   font-size: 1.5rem;
   overflow: hidden;

@@ -3,18 +3,28 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <div class="input-group">
-        <input type="text" class="form-control" placeholder="Nombre">
-        <div class="input-group-append">
-          <pre class="lupa">O
-|</pre>
-        </div> <!-- .input-group-append -->
-      </div><!--.input-group -->
+      {{ isCollapsedBusqueda }}
+      <button type="button" class="btn btn-primary btn-block"
+        (click)="isCollapsedBusqueda = !isCollapsedBusqueda"
+        aria-controls="collapseBusqueda"
+      >
+        MENÚ BUSQUEDA
+      </button>
+      <div id="collapseBusqueda" class="p-4 card" [ngbCollapse]="isCollapsedBusqueda">
+        <div class="card-body">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Nombre">
+            <div class="input-group-append">
+              <pre class="lupa">O--</pre>
+            </div> <!-- .input-group-append -->
+          </div><!--.input-group -->
+        </div> <!-- .card-body -->
+    </div> <!-- .card -->
     </div> <!-- .col -->
-    <div class="col">
+    <div class="col" *ngIf="false">
       <ul class="list-group habilidades">
-        <li  class="list-group-item" *ngFor="let habilidad of habilidades">
-          <input type="checkbox" id="habilidad-{{ habilidad }}"><label for="habilidad-{{ habilidad }}"> {{ habilidad }}</label>
+        <li  class="list-group-item" *ngFor="let habilidad of checkHabilidades">
+          <input type="checkbox" id="habilidad-{{ habilidad.value }}" [(ngModel)]="habilidad.checked"><label for="habilidad-{{ habilidad.value }}"> {{ habilidad.name }}</label>
         </li>
       </ul>
     </div>
@@ -29,7 +39,7 @@
     </div> <!-- .col 1 -->
     <div class="col">
       <div *ngIf="pokemonSeleccionado">
-        <div class="card">
+        <div class="card pokemon-detalle">
           <div class="card-body">
             <h4> {{ pokemonSeleccionado.id }}º {{ pokemonSeleccionado.nombre | titlecase}} </h4>
 
