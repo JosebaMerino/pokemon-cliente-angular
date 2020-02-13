@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
+import { UsuarioService } from 'src/app/services/usuario.service';
+import { RUTAS } from 'src/app/app-routing.module';
+
+const TIME_SHOW = 10;
+
 
 @Component({
   selector: 'app-navbar',

@@ -6,4 +6,12 @@ import { Injectable } from '@angular/core';
 export class UsuarioService {
 
   constructor() { }
+
+  estaLogeado() {
+    return true;
+  }
+
+  cerrarSesion(id: number) {
+    return true;
+  }
 }
