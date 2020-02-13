@@ -1,1 +1,32 @@
-<p>navbar works!</p>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">NavBar</a>
+  <button class="navbar-toggler hidden-sm-up" type="button"
+      (click)="alternarOculto()"
+      data-target="#navbarsDefault"
+      aria-controls="navbarsDefault"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+  >
+      <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div [ngbCollapse] = "isNavbarCollapsed" class="collapse navbar-collapse" id="navbarsDefault">
+      <ul class="navbar-nav mr-auto">
+          <li *ngFor="let ruta of rutas | numeroElementos : numero : isNavbarCollapsed" class="nav-item face-in">
+              <a [routerLink]="ruta.URL" routerLinkActive="active" class="nav-link" [routerLinkActiveOptions]="{exact: true}">
+                  <i [class]="ruta.icono"></i>
+                  {{ ruta.nombre | titlecase}}
+              </a>
+          </li>
+          <li class="nav-item" *ngIf="!isLogged">
+            <a [routerLink]="['/login']" class="nav-link"> Iniciar sesion</a>
+          </li>
+          <li class="nav-item" *ngIf="isLogged">
+            <a [routerLink]="['/privado']" class="nav-link"> Privado </a>
+          </li>
+          <li class="nav-item" *ngIf="isLogged">
+            <button (click)="salir()" class="btn btn-link nav-link"> Cerrar sesion</button>
+          </li>
+      </ul>
+  </div>
+</nav>
