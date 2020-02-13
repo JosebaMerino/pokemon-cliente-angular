@@ -13,7 +13,7 @@
       <div id="collapseBusqueda" class="p-4 card" [ngbCollapse]="isCollapsedBusqueda">
         <div class="card-body">
           <div class="input-group">
-            <input type="text" class="form-control" placeholder="Nombre">
+            <input type="text" class="form-control" placeholder="Nombre" [(ngModel)]="nombreBusqueda">
             <div class="input-group-append">
               <pre class="lupa">O--</pre>
             </div> <!-- .input-group-append -->
@@ -32,7 +32,7 @@
   <div class="row">
     <div class="col">
       <ul class="list-group">
-      <li class="list-group-item {{ pokemonSeleccionado &&   pokemonSeleccionado.id === pokemon.id? 'seleccionado' :'' }}" *ngFor="let pokemon of lista" (click)="seleccionarPokemon(pokemon)">
+      <li class="list-group-item {{ pokemonSeleccionado &&   pokemonSeleccionado.id === pokemon.id? 'seleccionado' :'' }}" *ngFor="let pokemon of lista | pokefiltro : nombreBusqueda" (click)="seleccionarPokemon(pokemon)">
           {{ pokemon.id }}º {{ pokemon.nombre | titlecase }}
         </li>
       </ul>

@@ -4,7 +4,8 @@ import { PrincipalComponent } from './paginas/principal/principal.component';
 
 
 const routes: Routes = [
-  {path: '', component: PrincipalComponent}
+  {path: '', component: PrincipalComponent},
+  {path: 'pokemon/:id', component}
 ];
 
 export const RUTAS = [

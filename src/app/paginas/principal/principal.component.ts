@@ -18,6 +18,8 @@ export class PrincipalComponent implements OnInit {
 
   isCollapsedBusqueda: boolean;
 
+  nombreBusqueda: string;
+
   constructor(private pokemonService: PokemonService) {
     console.trace('PrincipalComponent constructor');
 
@@ -25,6 +27,8 @@ export class PrincipalComponent implements OnInit {
     this.pokemonSeleccionado = undefined;
     this.habilidades = new Set<Habilidad>();
     this.checkHabilidades = new Array<CheckItem>();
+
+    this.nombreBusqueda = '';
 
     this.isCollapsedBusqueda = true;
   }// constructor

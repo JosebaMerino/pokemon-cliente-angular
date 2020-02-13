@@ -9,12 +9,14 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PrincipalComponent } from './paginas/principal/principal.component';
+import { PokefiltroPipe } from './pipes/pokefiltro.pipe';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    PrincipalComponent
+    PrincipalComponent,
+    PokefiltroPipe
   ],
   imports: [
     BrowserModule,
