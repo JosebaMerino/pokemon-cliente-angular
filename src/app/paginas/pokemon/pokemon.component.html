@@ -1,0 +1,32 @@
+<a [routerLink]="['/']"> Menu principal </a>
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          <button (click)="editando = !editando" class="btn btn-light btn-block"> EDITAR </button>
+          <div *ngIf="!editando">
+            <h1>{{ pokemon.id }}º {{ pokemon.nombre | titlecase }} </h1>
+            <ul class="list-group">
+              <li class="list-group-item" *ngFor="let habilidad of pokemon.habilidades">
+                {{ habilidad.id }}º {{ habilidad.nombre | titlecase }}
+              </li>
+            </ul>
+          </div> <!-- /no editando -->
+          <div *ngIf="editando">
+            Estas editando
+            <form [formGroup]="formulario" (ngSubmit)="enviar(formulario.value)">
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="Nombre del pokemon" formControlName="nombre" >
+              </div>
+              <button type="submit" class="btn btn-primary btn-block mt-3">
+                Enviar
+              </button>
+            </form>
+          </div> <!-- /editando -->
+        </div> <!-- .card-body -->
+      </div> <!-- .card -->
+    </div> <!-- .col -->
+  </div> <!-- .row -->
+</div> <!-- .container -->

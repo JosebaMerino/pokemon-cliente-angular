@@ -39,7 +39,7 @@
     </div> <!-- .col 1 -->
     <div class="col">
       <div *ngIf="pokemonSeleccionado">
-        <div class="card pokemon-detalle">
+        <div class="card pokemon-detalle" (click)="verDetalle(pokemonSeleccionado)">
           <div class="card-body">
             <h4> {{ pokemonSeleccionado.id }}º {{ pokemonSeleccionado.nombre | titlecase}} </h4>
 

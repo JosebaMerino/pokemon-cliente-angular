@@ -6,7 +6,7 @@ export interface IPokemonService {
    * Devuelve un pokemon con ese ID.
    * @param id del pokemon a buscar
    */
-  getPokemonById(id: number);
+  getPokemonById(id: number): Observable<Pokemon>;
 
   /**
    * Devuelve todos los pokemons existentes

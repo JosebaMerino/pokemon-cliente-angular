@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
@@ -10,20 +10,23 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PrincipalComponent } from './paginas/principal/principal.component';
 import { PokefiltroPipe } from './pipes/pokefiltro.pipe';
+import { PokemonComponent } from './paginas/pokemon/pokemon.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     PrincipalComponent,
-    PokefiltroPipe
+    PokefiltroPipe,
+    PokemonComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule, // Modulo para hacer ruteo
     HttpClientModule, // Modulo para llamadas por HTTP
     FormsModule,
-    NgbModule
+    NgbModule,
+    ReactiveFormsModule, // Para los formularios reactivos
 
   ],
   providers: [],

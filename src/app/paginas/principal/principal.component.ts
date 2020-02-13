@@ -3,6 +3,7 @@ import { Pokemon } from 'src/app/model/pokemon';
 import { PokemonService } from 'src/app/services/pokemon.service';
 import { Habilidad } from 'src/app/model/habilidad';
 import { CheckItem } from 'src/app/model/checkItem';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-principal',
@@ -20,7 +21,7 @@ export class PrincipalComponent implements OnInit {
 
   nombreBusqueda: string;
 
-  constructor(private pokemonService: PokemonService) {
+  constructor(private pokemonService: PokemonService, private router: Router) {
     console.trace('PrincipalComponent constructor');
 
     this.lista = [];
@@ -56,6 +57,12 @@ export class PrincipalComponent implements OnInit {
   seleccionarPokemon(pokemon: Pokemon) {
     console.debug('Pokemon seleccionado: %o', pokemon)
     this.pokemonSeleccionado = pokemon;
+  }
+
+  verDetalle(pokemon: Pokemon) {
+    console.debug(pokemon);
+
+    this.router.navigate([`pokemon/${pokemon.id}`]);
   }
 
 }

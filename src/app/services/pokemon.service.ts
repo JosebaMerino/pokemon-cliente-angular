@@ -11,14 +11,24 @@ export class PokemonService implements IPokemonService {
   constructor(private http: HttpClient) {
     console.trace('PokemonService constructor');
   }
-  getPokemonById(id: number) {
-    throw new Error("Method not implemented.");
+  getPokemonById(id: number): Observable<Pokemon> {
+    console.debug('GET POKEMON ' + id);
+    const url = `http://localhost:8080/pokemon-rest/api/pokemon/${id}`;
+
+    return this.http.get<Pokemon>(url);
   }
   getPokemons(): Observable<Pokemon[]> {
     console.debug('GET ALL POKEMONS');
 
     const url = 'http://localhost:8080/pokemon-rest/api/pokemon/';
     return this.http.get<Pokemon[]>(url);
+  }
+
+  putPokemon(poke: Pokemon) {
+    console.debug('PUT POKEMON' + poke.id);
+
+    const url = `http://localhost:8080/pokemon-rest/api/pokemon/${poke.id}`;
+    return this.http.put<Pokemon>(url, poke);
   }
 
 }
