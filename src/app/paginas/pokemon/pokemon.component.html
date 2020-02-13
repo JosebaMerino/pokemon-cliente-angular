@@ -13,6 +13,7 @@
                 {{ habilidad.id }}º {{ habilidad.nombre | titlecase }}
               </li>
             </ul>
+            <button (click)="borrarPokemon()"></button>
           </div> <!-- /no editando -->
           <div *ngIf="editando">
             Estas editando

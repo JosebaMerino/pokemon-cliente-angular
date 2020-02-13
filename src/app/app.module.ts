@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 import { PrincipalComponent } from './paginas/principal/principal.component';
 import { PokefiltroPipe } from './pipes/pokefiltro.pipe';
 import { PokemonComponent } from './paginas/pokemon/pokemon.component';
+import { CrearPokemonComponent } from './paginas/crear-pokemon/crear-pokemon.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { PokemonComponent } from './paginas/pokemon/pokemon.component';
     AppComponent,
     PrincipalComponent,
     PokefiltroPipe,
-    PokemonComponent
+    PokemonComponent,
+    CrearPokemonComponent
   ],
   imports: [
     BrowserModule,

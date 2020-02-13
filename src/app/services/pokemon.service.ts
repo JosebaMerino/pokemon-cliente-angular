@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { IPokemonService } from './IPokemon.service';
 import { Pokemon } from '../model/pokemon';
-import { Observable } from 'rxjs';
+import { Observable, Observer } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -25,10 +25,26 @@ export class PokemonService implements IPokemonService {
   }
 
   putPokemon(poke: Pokemon) {
+    debugger;
     console.debug('PUT POKEMON' + poke.id);
 
     const url = `http://localhost:8080/pokemon-rest/api/pokemon/${poke.id}`;
     return this.http.put<Pokemon>(url, poke);
+  }
+
+  deletePokemon(poke: Pokemon) {
+    debugger;
+    console.debug('PUT POKEMON' + poke.id);
+
+    const url = `http://localhost:8080/pokemon-rest/api/pokemon/${poke.id}`;
+    return this.http.delete<Pokemon>(url);
+  }
+
+  postPokemon(poke: Pokemon): Observable<Pokemon> {
+    console.debug('POST POKEMON ' + poke.id);
+
+    const url = 'http://localhost:8080/pokemon-rest/api/pokemon/';
+    return this.http.post<Pokemon>(url, poke);
   }
 
 }
