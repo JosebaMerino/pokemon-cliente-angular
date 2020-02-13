@@ -57,7 +57,7 @@ export class PokemonComponent implements OnInit {
     this.pokemonService.deletePokemon(this.pokemon.id).subscribe(
       (dato) => {
         console.debug(dato);
-      };
+      });
   }
 
 }
