@@ -21,10 +21,29 @@ Nos conectaremos al proyecto de pokemons de JAVA. Usando REST.
 (Opcional)
 * [] Gestionar habilidades
 
+GET     pokemon         RESPONSE 200, 204
+GET     pokemon/{id}    RESPONSE 200, 404
+DELETE  pokemon/{id}    RESPONSE 200, 404
+POST    pokemon/        RESPONSE 201, 
+```
+request body:                 response body
+{                             {
+  "nombre": "NUEVO_NOMBRE",     id: X,
+  "habilidades": []             "nombre": "NUEVO_NOMBRE"
+}                             }
 
-Una aplicacion con angular, listar datos, algun filtro.
+                              409: nombre duplicado, nombre min 1 max 50
+```
+PUT    pokemon/        RESPONSE 200
+```
+request body:                 response body
+{                             {
+  "id": 3                       id: X,
+  "nombre": "NUEVO_NOMBRE",     "nombre": "NUEVO_NOMBRE"
+}                             }
 
-
+                              409: nombre duplicado, nombre min 1 max 50
+```
 # PokemonClienteAngular
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.23.
