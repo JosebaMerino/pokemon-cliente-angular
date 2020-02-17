@@ -1,0 +1,9 @@
+.pokemon-lista {
+  display: flex;
+  .id {
+    flex-basis: 3rem;
+  }
+  .nombre {
+    flex-grow: 1;
+  }
+}
