@@ -19,7 +19,6 @@ export class BackofficeComponent implements OnInit {
 
   constructor(private pokemonService: PokemonService, private buider: FormBuilder) {
     this.alerta = new Alerta();
-    this.alerta.mostrandose = true;
     this.pokemons = new Array<Pokemon>();
     this.pokemonSelecionado = undefined;
 
@@ -60,6 +59,15 @@ export class BackofficeComponent implements OnInit {
         (dato) => {
           console.debug(dato);
           this.refrescarLista();
+          this.limpiarFormulario();
+          this.mostrarMensaje('Pokemon creado correctamente');
+        },
+        (error) => {
+          console.debug('El error es %o, con estatus code de %d', error, error.status);
+          if(error.status === 409) {
+            this.mostrarMensaje('El nombre del pokemon esta duplicado', Tipo.Error);
+
+          }
         }
       );
     } else {
@@ -68,7 +76,15 @@ export class BackofficeComponent implements OnInit {
         (dato) => {
           console.debug(dato);
           this.refrescarLista();
-        }
+          this.mostrarMensaje('Pokemon modificado correctamente');
+        },
+        (error) => {
+          console.debug('El error es %o, con estatus code de %d', error, error.status);
+          if(error.status === 409) {
+            this.mostrarMensaje('El nombre del pokemon esta duplicado', Tipo.Error);
+
+          }
+        } 
       );
     }
 
@@ -104,17 +120,41 @@ export class BackofficeComponent implements OnInit {
 
   }// limpiarFormulario
 
+  mostrarMensaje( mensaje: string, tipo?: Tipo ) {
+    this.alerta.mensaje = mensaje;
+    this.alerta.mostrandose = true;
+
+    tipo = (!tipo ? tipo : Tipo.Primary);
+
+    if(tipo === Tipo.Error) {
+      this.alerta.tipo = 'danger';
+    } else if(tipo === Tipo.Info) {
+      this.alerta.tipo = 'info';
+    } else if(tipo === Tipo.Primary) {
+      this.alerta.tipo = 'primary';
+    }
+  }
+
 
 
 }// BackofficeComponent
 
 
 class Alerta {
+
   mostrandose: boolean;
   mensaje: string;
+  tipo: string;
 
   constructor() {
     this.mostrandose = false;
     this.mensaje = '';
+    this.tipo = 'primary';
   }
 }// Alerta
+
+enum Tipo {
+  Error,
+  Info,
+  Primary
+}

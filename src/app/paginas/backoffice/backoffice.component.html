@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <div class="alert alert-primary alert-dismissible fade show" role="alert" *ngIf="alerta.mostrandose" (click)="alerta.mostrandose = false">
+      <div class="alert alert-{{ alerta.tipo }} alert-dismissible fade show" role="alert" *ngIf="alerta.mostrandose" (click)="alerta.mostrandose = false">
         {{ alerta.mensaje }}
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
