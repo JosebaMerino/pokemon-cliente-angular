@@ -1,9 +1,10 @@
 <h1>Pagina principal</h1>
 
+<a [routerLink]="['/pokemon']"> CREAR POKEMON</a>
+
 <div class="container">
   <div class="row">
     <div class="col">
-      {{ isCollapsedBusqueda }}
       <button type="button" class="btn btn-primary btn-block"
         (click)="isCollapsedBusqueda = !isCollapsedBusqueda"
         aria-controls="collapseBusqueda"

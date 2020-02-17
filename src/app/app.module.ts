@@ -12,6 +12,8 @@ import { PrincipalComponent } from './paginas/principal/principal.component';
 import { PokefiltroPipe } from './pipes/pokefiltro.pipe';
 import { PokemonComponent } from './paginas/pokemon/pokemon.component';
 import { CrearPokemonComponent } from './paginas/crear-pokemon/crear-pokemon.component';
+import { NavbarComponent } from './componentes/navbar/navbar.component';
+import { NumeroElementosPipe } from './pipes/numero-elementos.pipe';
 
 
 @NgModule({
@@ -20,7 +22,9 @@ import { CrearPokemonComponent } from './paginas/crear-pokemon/crear-pokemon.com
     PrincipalComponent,
     PokefiltroPipe,
     PokemonComponent,
-    CrearPokemonComponent
+    CrearPokemonComponent,
+    NavbarComponent,
+    NumeroElementosPipe
   ],
   imports: [
     BrowserModule,
