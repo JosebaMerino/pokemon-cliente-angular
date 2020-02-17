@@ -19,6 +19,7 @@ export class BackofficeComponent implements OnInit {
 
   constructor(private pokemonService: PokemonService, private buider: FormBuilder) {
     this.alerta = new Alerta();
+    this.alerta.mostrandose = true;
     this.pokemons = new Array<Pokemon>();
     this.pokemonSelecionado = undefined;
 
@@ -58,6 +59,7 @@ export class BackofficeComponent implements OnInit {
       this.pokemonService.postPokemon(pokemon).subscribe(
         (dato) => {
           console.debug(dato);
+          this.refrescarLista();
         }
       );
     } else {
@@ -65,11 +67,28 @@ export class BackofficeComponent implements OnInit {
       this.pokemonService.putPokemon(pokemon).subscribe(
         (dato) => {
           console.debug(dato);
+          this.refrescarLista();
         }
-        );
-      }
+      );
+    }
 
   }// enviar
+
+  borrarPokemon(pokemon: Pokemon) {
+    console.debug('Borrando pokemon %o', pokemon);
+    if(confirm('Desea borrar el pokemon ' + pokemon.nombre + '?')) {
+      if(this.pokemonSelecionado && this.pokemonSelecionado.id === pokemon.id){
+        this.pokemonSelecionado = undefined;
+        this.limpiarFormulario();
+      }
+      this.pokemonService.deletePokemon(pokemon.id).subscribe(
+        (dato) => {
+          console.debug('Vengo de borrar y traigo: %o',dato);
+          this.refrescarLista();
+        }
+      )
+    }
+  }
 
   refrescarLista() {
     this.pokemonService.getPokemons().subscribe(
@@ -78,6 +97,12 @@ export class BackofficeComponent implements OnInit {
       }
     );
   } // refrescarLista
+
+  limpiarFormulario() {
+    this.formulario.get('id').setValue(0);
+    this.formulario.get('nombre').setValue('');
+
+  }// limpiarFormulario
 
 
 

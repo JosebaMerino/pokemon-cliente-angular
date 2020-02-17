@@ -12,15 +12,17 @@
   <div class="row">
     <div class="col">
       <ul class="list-group">
-        <li (click)="selecionarPokemon(pokemon)" class="list-group-item pokemon-lista {{pokemonSelecionado && pokemonSelecionado.id == pokemon.id? 'active':'' }}" *ngFor="let pokemon of pokemons">
-          <span class="id">
-            {{ pokemon.id }}º
-          </span>
-          <span class="nombre">
-            {{ pokemon.nombre }}
-          </span>
+        <li class="list-group-item pokemon-lista {{pokemonSelecionado && pokemonSelecionado.id == pokemon.id? 'active':'' }}" *ngFor="let pokemon of pokemons">
+          <div class="d-flex w-100 h-100" (click)="selecionarPokemon(pokemon)" >
+            <span class="id">
+              {{ pokemon.id }}º
+            </span>
+            <span class="nombre">
+              {{ pokemon.nombre }}
+            </span>
+          </div>
           <span class="papelera">
-            <button> DEL </button>
+            <button (click)="borrarPokemon(pokemon)"> DEL </button>
           </span>
         </li>
       </ul>

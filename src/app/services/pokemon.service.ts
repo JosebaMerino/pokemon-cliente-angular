@@ -32,7 +32,6 @@ export class PokemonService implements IPokemonService {
   }
 
   deletePokemon(id: number) {
-    debugger;
     console.debug('DELETE POKEMON' + id);
 
     const url = `http://localhost:8080/pokemon-rest/api/pokemon/${id}`;
