@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Pokemon } from 'src/app/model/pokemon';
 import { PokemonService } from 'src/app/services/pokemon.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-backoffice',
@@ -14,10 +15,17 @@ export class BackofficeComponent implements OnInit {
   pokemons: Array<Pokemon>;
   pokemonSelecionado: Pokemon;
 
-  constructor(private pokemonService: PokemonService) {
+  formulario: FormGroup;
+
+  constructor(private pokemonService: PokemonService, private buider: FormBuilder) {
     this.alerta = new Alerta();
     this.pokemons = new Array<Pokemon>();
     this.pokemonSelecionado = undefined;
+
+    this.formulario = this.buider.group({
+      id: [0],
+      nombre: ['', [ Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
+    });
   }// constructor
 
   ngOnInit() {
@@ -31,7 +39,45 @@ export class BackofficeComponent implements OnInit {
   selecionarPokemon(pokemon: Pokemon) {
     console.trace('Pokemon selecconado : %o', pokemon);
     this.pokemonSelecionado = pokemon;
+
+    this.formulario.get('id').setValue(pokemon.id);
+    this.formulario.get('nombre').setValue(pokemon.nombre);
+
   }
+
+  enviar(values : any) {
+    console.debug(values.nombre);
+    const pokemon = new Pokemon();
+
+    pokemon.id = values.id;
+    pokemon.nombre = values.nombre;
+
+    if(pokemon.id === 0) {
+      console.debug('CREAR');
+
+      this.pokemonService.postPokemon(pokemon).subscribe(
+        (dato) => {
+          console.debug(dato);
+        }
+      );
+    } else {
+      console.debug('MODIFICAR');
+      this.pokemonService.putPokemon(pokemon).subscribe(
+        (dato) => {
+          console.debug(dato);
+        }
+        );
+      }
+
+  }// enviar
+
+  refrescarLista() {
+    this.pokemonService.getPokemons().subscribe(
+      (pokemons) => {
+        this.pokemons = pokemons;
+      }
+    );
+  } // refrescarLista
 
 
 

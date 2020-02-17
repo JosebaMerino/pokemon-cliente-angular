@@ -26,12 +26,14 @@
       </ul>
     </div> <!-- .col -->
     <div class="col">
-      <form>
+      <form [formGroup]="formulario" (ngSubmit)="enviar(formulario.value)">
+        {{ formulario.value | json }}
         <div class="form-group">
-          <label for="nombre-pokemon">Nombre</label>
-          <input class="form-control" type="text" name="nombre-pokemon" id="nombre-pokemon">
+          <label for="nombre">Nombre</label>
+          <input type="text" class="form-control" placeholder="Nombre del pokemon" formControlName="nombre">
         </div>
-        <button class="btn btn-primary btn-block"> Crear </button>
+
+        <button type="submit" class="btn btn-primary btn-block" [disabled]="formulario.invalid"> CREAR </button>
       </form>
     </div>
   </div><!-- .row -->

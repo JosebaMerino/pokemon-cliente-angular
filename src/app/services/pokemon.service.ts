@@ -25,7 +25,6 @@ export class PokemonService implements IPokemonService {
   }
 
   putPokemon(poke: Pokemon) {
-    debugger;
     console.debug('PUT POKEMON' + poke.id);
 
     const url = `http://localhost:8080/pokemon-rest/api/pokemon/${poke.id}`;
