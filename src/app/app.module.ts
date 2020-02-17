@@ -14,6 +14,7 @@ import { PokemonComponent } from './paginas/pokemon/pokemon.component';
 import { CrearPokemonComponent } from './paginas/crear-pokemon/crear-pokemon.component';
 import { NavbarComponent } from './componentes/navbar/navbar.component';
 import { NumeroElementosPipe } from './pipes/numero-elementos.pipe';
+import { LoginComponent } from './paginas/login/login.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { NumeroElementosPipe } from './pipes/numero-elementos.pipe';
     PokemonComponent,
     CrearPokemonComponent,
     NavbarComponent,
-    NumeroElementosPipe
+    NumeroElementosPipe,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
