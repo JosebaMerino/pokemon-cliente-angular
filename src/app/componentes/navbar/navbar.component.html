@@ -10,21 +10,21 @@
       <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div [ngbCollapse] = "isNavbarCollapsed" class="collapse navbar-collapse" id="navbarsDefault">
-      <ul class="navbar-nav mr-auto">
+  <div [ngbCollapse] = "isNavbarCollapsed" class="collapse navbar-collapse" id="navbarsDefault" style="width: 100vw;">
+      <ul class="navbar-nav mr-auto" style="width: 100%;">
           <li *ngFor="let ruta of rutas | numeroElementos : numero : isNavbarCollapsed" class="nav-item face-in">
               <a [routerLink]="ruta.URL" routerLinkActive="active" class="nav-link" [routerLinkActiveOptions]="{exact: true}">
                   <i [class]="ruta.icono"></i>
                   {{ ruta.nombre | titlecase}}
               </a>
           </li>
-          <li class="nav-item" *ngIf="!isLogged">
+          <li class="nav-item ml-auto" *ngIf="!isLogged">
             <a [routerLink]="['/login']" class="nav-link"> Iniciar sesion</a>
           </li>
           <li class="nav-item" *ngIf="isLogged">
-            <a [routerLink]="['/privado']" class="nav-link"> Privado </a>
+            <a [routerLink]="['/backoffice']" class="nav-link"> Privado </a>
           </li>
-          <li class="nav-item" *ngIf="isLogged">
+          <li class="nav-item ml-auto" *ngIf="isLogged">
             <button (click)="salir()" class="btn btn-link nav-link"> Cerrar sesion</button>
           </li>
       </ul>
