@@ -16,6 +16,7 @@ import { NavbarComponent } from './componentes/navbar/navbar.component';
 import { NumeroElementosPipe } from './pipes/numero-elementos.pipe';
 import { LoginComponent } from './paginas/login/login.component';
 import { BackofficeComponent } from './paginas/backoffice/backoffice.component';
+import { MensajeComponent } from './componentes/mensaje/mensaje.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { BackofficeComponent } from './paginas/backoffice/backoffice.component';
     NavbarComponent,
     NumeroElementosPipe,
     LoginComponent,
-    BackofficeComponent
+    BackofficeComponent,
+    MensajeComponent
   ],
   imports: [
     BrowserModule,
