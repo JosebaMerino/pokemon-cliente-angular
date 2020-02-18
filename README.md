@@ -5,6 +5,8 @@ Un nuevo proyecto.
 
 Nos conectaremos al proyecto de pokemons de JAVA. Usando REST.
 
+* [] Tono grisaceo al no cargar 
+
 * [x] Recuperar el proyecto de pokemon-rest
 * [x] Montar la base de datos
 * [x] Arrancar el servicio REST

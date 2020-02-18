@@ -28,7 +28,7 @@
       </ul>
     </div> <!-- .col -->
     <div class="col">
-      <button (click)="limpiarFormulario()" class="btn btn-primary btn-block" > Limpiar formulario </button>
+      <button (click)="limpiarFormulario()" class="btn btn-light btn-block" > Limpiar formulario </button>
       <form [formGroup]="formulario" (ngSubmit)="enviar(formulario.value)">
         {{ formulario.value | json }}
         <div class="form-group">

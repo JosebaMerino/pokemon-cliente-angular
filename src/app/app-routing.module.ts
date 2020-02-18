@@ -9,7 +9,7 @@ import { LoginGuard } from './guards/login.guard';
 
 
 const routes: Routes = [
-  { path: '', component: LoginComponent },
+  { path: '', component: PrincipalComponent },
   { path: 'pokemon/:id', component: PokemonComponent },
   { path: 'pokemon', component: CrearPokemonComponent },
   { path: 'login', component: LoginComponent },

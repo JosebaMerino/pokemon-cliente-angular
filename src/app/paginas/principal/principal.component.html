@@ -1,7 +1,3 @@
-<h1>Pagina principal</h1>
-
-<a [routerLink]="['/pokemon']"> CREAR POKEMON</a>
-
 <div class="container">
   <div class="row">
     <div class="col">
@@ -16,9 +12,21 @@
           <div class="input-group">
             <input type="text" class="form-control" placeholder="Nombre" [(ngModel)]="nombreBusqueda">
             <div class="input-group-append">
-              <pre class="lupa">O--</pre>
+              <div class="input-group-text">
+                <i class="fas fa-search"></i>
+              </div>
             </div> <!-- .input-group-append -->
           </div><!--.input-group -->
+          <button (click)="filtrarPokemons()">
+            Filtrar
+          </button>
+
+          <div>
+            <div class="custom-control custom-checkbox" *ngFor="let habilidad of checkHabilidades">
+                <input (change)="filtrarPokemons()" [(ngModel)]="habilidad.checked" type="checkbox" class="custom-control-input" id="habilidad-{{ habilidad.value }}">
+                <label class="custom-control-label" for="habilidad-{{ habilidad.value }}"> {{ habilidad.name }} </label>
+            </div>
+          </div>
         </div> <!-- .card-body -->
     </div> <!-- .card -->
     </div> <!-- .col -->
@@ -33,7 +41,7 @@
   <div class="row">
     <div class="col">
       <ul class="list-group">
-      <li class="list-group-item {{ pokemonSeleccionado &&   pokemonSeleccionado.id === pokemon.id? 'seleccionado' :'' }}" *ngFor="let pokemon of lista | pokefiltro : nombreBusqueda" (click)="seleccionarPokemon(pokemon)">
+      <li class="list-group-item {{ pokemonSeleccionado &&   pokemonSeleccionado.id === pokemon.id? 'seleccionado' :'' }}" *ngFor="let pokemon of listaFiltrados | pokefiltro : nombreBusqueda" (click)="seleccionarPokemon(pokemon)">
           {{ pokemon.id }}º {{ pokemon.nombre | titlecase }}
         </li>
       </ul>
@@ -43,7 +51,6 @@
         <div class="card pokemon-detalle">
           <div class="card-body">
             <h4> {{ pokemonSeleccionado.id }}º {{ pokemonSeleccionado.nombre | titlecase}} </h4>
-
             <ul class="list-group" *ngIf="true">
               <li class="list-group-item" *ngFor="let habilidad of pokemonSeleccionado.habilidades">
                 {{ habilidad.id }}º {{ habilidad.nombre | titlecase}}

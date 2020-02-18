@@ -13,8 +13,10 @@ import { Router } from '@angular/router';
 export class PrincipalComponent implements OnInit {
 
   lista: Array<Pokemon>;
+  listaFiltrados: Array<Pokemon>;
+
   pokemonSeleccionado: Pokemon;
-  habilidades: Set<Habilidad>;
+  habilidades: Array<Habilidad>;
   checkHabilidades: Array<CheckItem>;
 
   isCollapsedBusqueda: boolean;
@@ -25,8 +27,10 @@ export class PrincipalComponent implements OnInit {
     console.trace('PrincipalComponent constructor');
 
     this.lista = [];
+    this.listaFiltrados = [];
+
     this.pokemonSeleccionado = undefined;
-    this.habilidades = new Set<Habilidad>();
+    this.habilidades = new Array<Habilidad>();
     this.checkHabilidades = new Array<CheckItem>();
 
     this.nombreBusqueda = '';
@@ -40,13 +44,19 @@ export class PrincipalComponent implements OnInit {
     this.pokemonService.getPokemons().subscribe(
       (pokemons) => {
         this.lista = pokemons;
-        this.habilidades = new Set<Habilidad>(
+        this.listaFiltrados = pokemons;
+        this.habilidades =
           pokemons.reduce((ac, cur, index, array) => {
             return ac.concat(cur.habilidades);
-          }, [])
-        );
-        this.habilidades.forEach((ha) =>
-        {
+          }, []);
+        this.habilidades = this.habilidades.reduce((ac, cur) => {
+          if (!ac.some(el => el.nombre === cur.nombre)) {
+            ac.push(cur);
+          }
+          return ac;
+          }, []);
+        this.habilidades.forEach(
+          (ha) => {
           this.checkHabilidades.push(new CheckItem(ha.nombre, ha.id));
         });
       }
@@ -55,14 +65,31 @@ export class PrincipalComponent implements OnInit {
   } // ngOnInit
 
   seleccionarPokemon(pokemon: Pokemon) {
-    console.debug('Pokemon seleccionado: %o', pokemon)
+    console.debug('Pokemon seleccionado: %o', pokemon);
     this.pokemonSeleccionado = pokemon;
-  }
+  }// seleccionarPokemon
 
   verDetalle(pokemon: Pokemon) {
     console.debug(pokemon);
 
     this.router.navigate([`pokemon/${pokemon.id}`]);
   }
+
+  filtrarPokemons() {
+    const habilidades = this.checkHabilidades.filter(el => el.checked).map(el => el.name);
+
+
+    if( habilidades.length !== 0 ) {
+
+      // que tienen alguna habilidad de la lista
+      this.listaFiltrados = this.lista.filter(
+        (pokemon) => {
+          return pokemon.habilidades.some( el => habilidades.includes(el.nombre));
+        }
+        );
+    } else {
+      this.listaFiltrados = this.lista;
+    }
+  }// filtrarPokemons
 
 }
