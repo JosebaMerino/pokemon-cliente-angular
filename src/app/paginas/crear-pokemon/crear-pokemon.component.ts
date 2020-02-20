@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators, FormArray, AbstractControl } from '@angular/forms';
 import { Pokemon } from 'src/app/model/pokemon';
 import { PokemonService } from 'src/app/services/pokemon.service';
@@ -6,21 +6,58 @@ import { CheckItem } from 'src/app/model/checkItem';
 import { HabilidadService } from 'src/app/services/habilidad.service';
 
 @Component({
-  selector: 'app-crear-pokemon',
+  selector: 'app-formulario-pokemon',
   templateUrl: './crear-pokemon.component.html',
   styleUrls: ['./crear-pokemon.component.scss']
 })
 export class CrearPokemonComponent implements OnInit {
 
+  @Input() pokemon: Pokemon;
+
   formulario: FormGroup;
+
+  mostrar: boolean;
 
   options: Array<CheckItem>;
   habilidadesForm: FormArray;
 
+  ngOnChanges() {
+    if(this.pokemon){
+      debugger;
+      console.log('change');
+      this.formulario.get('id').setValue(this.pokemon.id);
+      this.formulario.get('nombre').setValue(this.pokemon.nombre);
+      this.actualizarHabilidadesPokemon();
+    }
+
+  }
+
+  actualizarHabilidadesPokemon() {
+    this.habilidadesForm.clear();
+
+    this.pokemon.habilidades.forEach(
+      habilidad => {
+        this.habilidadesForm.push(this.crearFormGroupHabilidad(habilidad.nombre, habilidad.id));
+      }
+    );
+
+    this.options.forEach(
+      option => {
+        option.checked = this.pokemon.habilidades.some(el => el.id === option.value);
+      }
+    )
+  }
+
   constructor(private builder: FormBuilder, private pokemonService : PokemonService, private habilidadService: HabilidadService) {
+
+    if (!this.pokemon) {
+      this.pokemon = new Pokemon();
+    }
     this.crearFormulario();
 
     this.options = new Array<CheckItem>();
+    this.mostrar = false;
+
     // this.options.push(new CheckItem('Impasible', 1));
     // this.options.push(new CheckItem('Rayos', 2));
     // this.options.push(new CheckItem('Oloroso', 3));
@@ -49,8 +86,9 @@ export class CrearPokemonComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.trace('ngOnInit CrearPokemonComponent');
     this.cargarHabilidades();
-  }
+  }// ngOnInit
 
   enviar(value: any) {
 

@@ -28,16 +28,7 @@
       </ul>
     </div> <!-- .col -->
     <div class="col">
-      <button (click)="limpiarFormulario()" class="btn btn-light btn-block" > Limpiar formulario </button>
-      <form [formGroup]="formulario" (ngSubmit)="enviar(formulario.value)">
-        {{ formulario.value | json }}
-        <div class="form-group">
-          <label for="nombre">Nombre</label>
-          <input type="text" class="form-control" placeholder="Nombre del pokemon" formControlName="nombre">
-        </div>
-
-        <button type="submit" class="btn btn-primary btn-block" [disabled]="formulario.invalid"> {{ formulario.value.id === 0 ? 'Crear':'Modificar'}} </button>
-      </form>
+      <app-formulario-pokemon [pokemon]="pokemonSelecionado" ></app-formulario-pokemon>
     </div>
   </div><!-- .row -->
 </div> <!-- .container -->

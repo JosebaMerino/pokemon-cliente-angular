@@ -1,37 +1,31 @@
-<a [routerLink]="['/']"> Inicio</a>
-COSAS
-<pre style="background-color: black; color: white;">
-  {{ formulario.value | json }}
-  {{ formulario.status | json }}
-  {{ formulario.errors | json }}
-</pre>
 
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <div class="card">
-        <div class="card-body">
-          <h2> CREAR UN NUEVO POKEMON </h2>
-          <form id="formulario" [formGroup]="formulario" (ngSubmit)="enviar(formulario.value)">
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="Nombre del pokemon" formControlName="nombre">
-            </div>
-          </form>
+<div class="card">
+  <div class="card-body">
+    <input type="button" class="btn btn-block btn-outline-info" (click)="mostrar = !mostrar" value="DETALLES" >
+    <pre [hidden]="!mostrar" style="background-color: black; color: white;">
+{{ formulario.value | json }}
+{{ formulario.status | json }}
+{{ formulario.errors | json }}
 
-            <ul class="list-group">
-              <li class="list-group-item" *ngFor="let option of options">
-                <input type="checkbox" name="" id="habilidad-{{option.value}}"
-                  (change)="checkCambiado(option)"
-                  [(ngModel)]="option.checked"
-                >
-                <label for="habilidad-{{option.value}}"> {{ option.name }} </label>
-              </li>
-            </ul>
-            <button type="submit" class="btn btn-primary btn-block" form="formulario"> CREAR </button>
-
-        </div>
+{{ pokemon | json }}
+    </pre>
+    <form id="formulario" [formGroup]="formulario" (ngSubmit)="enviar(formulario.value)">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Nombre del pokemon" formControlName="nombre">
       </div>
-    </div>
+    </form>
+
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let option of options">
+          <input type="checkbox" name="" id="habilidad-{{option.value}}"
+            (change)="checkCambiado(option)"
+            [(ngModel)]="option.checked"
+          >
+          <label for="habilidad-{{option.value}}"> {{ option.name }} </label>
+        </li>
+      </ul>
+      <button type="submit" class="btn btn-primary btn-block" form="formulario"> CREAR </button>
+
   </div>
 </div>
 
