@@ -17,7 +17,10 @@ const routes: Routes = [
 ];
 
 export const RUTAS = [
-
+  {
+    URL: '/pokemon',
+    nombre: 'Crear'
+  }
 ];
 
 @NgModule({
