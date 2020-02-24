@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Usuario } from '../model/usuario';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 const KEY_ISLOGGED = 'isLogged';
 
@@ -12,7 +14,7 @@ export class UsuarioService {
 
   private storage: Storage;
 
-  constructor() {
+  constructor(private http: HttpClient) {
     this.usuario = undefined;
     console.trace('constructor UsuarioService');
     this.storage = window.sessionStorage;
@@ -22,30 +24,18 @@ export class UsuarioService {
     return !!this.storage.getItem(KEY_ISLOGGED);
   }// estaLogeado
 
-  login(nombre: string, password: string): Usuario {
+  login(nombre: string, password: string): Observable<any> {
+    const url = 'http://localhost:8080/pokemon-rest/login';
+
     console.trace(`UsuarioService login, nombre ${nombre} password ${password}`);
-    const NOMBRE = 'admin';
-    const PASS = 'admin';
-
-    let usuarioBuscar: Usuario; // si no entra en el if sera undefined
-
-    console.debug('"%s" "%s" -- "%s" "%s"', NOMBRE, PASS, nombre, password);
-
-    if (NOMBRE === nombre && PASS === password) {
-      // Crear usuario y rellenar datos.
-      usuarioBuscar = new Usuario();
-      usuarioBuscar.nombre = nombre;
-      usuarioBuscar.password = password;
-      usuarioBuscar.id = 99;
-      this.storage.setItem(KEY_ISLOGGED, JSON.stringify(usuarioBuscar)); // marcar que esta logeado
-    } else {
-      this.storage.removeItem(KEY_ISLOGGED); // marcar que no esta logeado
-    }
-
-    return usuarioBuscar;
+    return this.http.post(url, { nombre, password });
   } // login
 
   cerrarSesion(idUsuario: number) {
+    const url = 'http://localhost:8080/pokemon-rest/logout';
+
     this.storage.removeItem(KEY_ISLOGGED);
+
+    this.http.get(url);
   } // cerrarSesion
 }

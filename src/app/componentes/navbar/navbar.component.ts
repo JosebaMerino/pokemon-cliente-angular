@@ -75,6 +75,7 @@ export class NavbarComponent implements OnInit {
     const mensaje = '¿Estas seguro de que quieres salir?';
     if(confirm(mensaje)){
       this.usuarioService.cerrarSesion(99);
+      this.isLogged = !this.isLogged;
       this.router.navigate(['login']);
     }
   }
