@@ -3,6 +3,7 @@ import { IPokemonService } from './IPokemon.service';
 import { Pokemon } from '../model/pokemon';
 import { Observable, Observer } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -13,35 +14,35 @@ export class PokemonService implements IPokemonService {
   }
   getPokemonById(id: number): Observable<Pokemon> {
     console.debug('GET POKEMON ' + id);
-    const url = `http://localhost:8080/pokemon-rest/api/pokemon/${id}`;
+    const url = `${environment.APIURL}/api/pokemon/${id}`;
 
     return this.http.get<Pokemon>(url);
   }
   getPokemons(): Observable<Pokemon[]> {
     console.debug('GET ALL POKEMONS');
 
-    const url = 'http://localhost:8080/pokemon-rest/api/pokemon/';
+    const url = `${environment.APIURL}/api/pokemon/`;
     return this.http.get<Pokemon[]>(url);
   }
 
   putPokemon(poke: Pokemon) {
     console.debug('PUT POKEMON' + poke.id);
 
-    const url = `http://localhost:8080/pokemon-rest/api/pokemon/${poke.id}`;
+    const url = `${environment.APIURL}/api/pokemon/${poke.id}`;
     return this.http.put<Pokemon>(url, poke);
   }
 
   deletePokemon(id: number) {
     console.debug('DELETE POKEMON' + id);
 
-    const url = `http://localhost:8080/pokemon-rest/api/pokemon/${id}`;
+    const url = `${environment.APIURL}/api/pokemon/${id}`;
     return this.http.delete<Pokemon>(url);
   }
 
   postPokemon(poke: Pokemon): Observable<Pokemon> {
     console.debug('POST POKEMON ' + poke.id);
 
-    const url = 'http://localhost:8080/pokemon-rest/api/pokemon/';
+    const url = `${environment.APIURL}/api/pokemon/`;
     return this.http.post<Pokemon>(url, poke);
   }
 

@@ -47,6 +47,7 @@ export class LoginComponent implements OnInit {
       },
       (error) => {
         console.trace('No se ha podido logear');
+        console.error(error);
       }
     );
   }// login

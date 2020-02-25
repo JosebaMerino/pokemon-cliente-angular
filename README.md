@@ -1,3 +1,6 @@
+# Construir para produccion
+`ng build --prod --baseHref="/pokemon-joseba-angular/"`
+
 # HOY
 
 Que vamos a hacer?
