@@ -25,6 +25,11 @@ export class UsuarioService {
     return !!this.storage.getItem(KEY_ISLOGGED);
   }// estaLogeado
 
+  getLogeado(): Observable<any> {
+    const url = `${environment.APIURL}/login`;
+    return this.http.get(url);
+  }
+
   login(nombre: string, password: string): Observable<any> {
     const url = `${environment.APIURL}/login`;
 

@@ -29,7 +29,7 @@ export class PokemonService implements IPokemonService {
     console.debug('PUT POKEMON' + poke.id);
 
     const url = `${environment.APIURL}/api/pokemon/${poke.id}`;
-    return this.http.put<Pokemon>(url, poke);
+    return this.http.put<Pokemon>(url, poke, { withCredentials: true });
   }
 
   deletePokemon(id: number) {

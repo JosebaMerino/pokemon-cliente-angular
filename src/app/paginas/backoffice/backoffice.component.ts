@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Pokemon } from 'src/app/model/pokemon';
 import { PokemonService } from 'src/app/services/pokemon.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
   selector: 'app-backoffice',
@@ -17,7 +18,7 @@ export class BackofficeComponent implements OnInit {
 
   formulario: FormGroup;
 
-  constructor(private pokemonService: PokemonService, private buider: FormBuilder) {
+  constructor(private pokemonService: PokemonService, private buider: FormBuilder, private usuarioService: UsuarioService) {
     this.alerta = new Alerta();
     this.pokemons = new Array<Pokemon>();
     this.pokemonSelecionado = undefined;
@@ -29,6 +30,16 @@ export class BackofficeComponent implements OnInit {
   }// constructor
 
   ngOnInit() {
+    this.usuarioService.getLogeado().subscribe(
+      (dato) => {
+        console.trace(dato);
+      },
+      (error) => {
+        console.trace(error);
+      }
+
+    );
+
     this.pokemonService.getPokemons().subscribe(
       (pokemons) => {
         this.pokemons = pokemons;
@@ -84,7 +95,7 @@ export class BackofficeComponent implements OnInit {
             this.mostrarMensaje('El nombre del pokemon esta duplicado', Tipo.Error);
 
           }
-        } 
+        }
       );
     }
 
