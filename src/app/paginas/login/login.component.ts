@@ -37,7 +37,8 @@ export class LoginComponent implements OnInit {
 
 
     this.usuarioService.login(values.username, values.password).subscribe(
-      () => {
+      (data) => {
+          this.storage.setItem("JSESSIONID", data.JSESSIONID);
           const usuarioBuscar = new Usuario();
           usuarioBuscar.nombre = values.username;
           usuarioBuscar.password = values.password;

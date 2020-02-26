@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Usuario } from '../model/usuario';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
@@ -26,8 +26,11 @@ export class UsuarioService {
   }// estaLogeado
 
   getLogeado(): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Set-Cookie': this.storage.getItem('JSESSIONID') })
+    };
     const url = `${environment.APIURL}/login`;
-    return this.http.get(url);
+    return this.http.get(url, httpOptions);
   }
 
   login(nombre: string, password: string): Observable<any> {
