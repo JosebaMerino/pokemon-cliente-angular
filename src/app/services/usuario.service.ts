@@ -3,6 +3,7 @@ import { Usuario } from '../model/usuario';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { debug } from 'util';
 
 const KEY_ISLOGGED = 'isLogged';
 
@@ -27,7 +28,7 @@ export class UsuarioService {
 
   getLogeado(): Observable<any> {
     const url = `${environment.APIURL}/login`;
-    return this.http.get(url);
+    return this.http.get(url, { withCredentials: true });
   }
 
   login(nombre: string, password: string): Observable<any> {
@@ -42,6 +43,6 @@ export class UsuarioService {
 
     this.storage.removeItem(KEY_ISLOGGED);
 
-    this.http.get(url);
+    this.http.get(url, { withCredentials: true });
   } // cerrarSesion
 }

@@ -36,14 +36,14 @@ export class PokemonService implements IPokemonService {
     console.debug('DELETE POKEMON' + id);
 
     const url = `${environment.APIURL}/api/pokemon/${id}`;
-    return this.http.delete<Pokemon>(url);
+    return this.http.delete<Pokemon>(url, { withCredentials: true });
   }
 
   postPokemon(poke: Pokemon): Observable<Pokemon> {
     console.debug('POST POKEMON ' + poke.id);
 
     const url = `${environment.APIURL}/api/pokemon/`;
-    return this.http.post<Pokemon>(url, poke);
+    return this.http.post<Pokemon>(url, poke, { withCredentials: true });
   }
 
 }
