@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  APIURL: 'http://192.168.0.50:8080/pokemon-joseba',
+  APIURL: 'http://localhost:8080/pokemon-rest/',
   BASE: '/'
 };
 
